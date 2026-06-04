@@ -1,39 +1,77 @@
-![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/wokwi_test/badge.svg) ![](../../workflows/fpga/badge.svg)
+![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/fpga/badge.svg)
 
-# Tiny Tapeout Wokwi Project Template
+# Simple Sprinkler Project
+Link to Wokwi project: [Simple Sprinkler](https://wokwi.com/projects/451184391728659457)
 
-- [Read the documentation for project](docs/info.md)
+### **Objective**
+I designed a simple sprinkler (hence the name) using combinational logic. The system evaluates environmental conditions and operational constraints to determine whether the sprinkler system should be enabled, while independently indicating whether sufficient water supply is available. 
 
-## What is Tiny Tapeout?
+### **Logic**
+For the sprinkler to actually function, two conditions must be met
+* The sprinkler system must be enabled
+* There has to be a sufficient water supply
 
-Tiny Tapeout is an educational project that aims to make it easier and cheaper than ever to get your digital and analog designs manufactured on a real chip.
+In order to enable the sprinkler the following conditions have to be met
+* It can't be raining
+* The soil can't be moist
+* Water supply doesn't matter
+* Watering time doesn't matter as long as there is water supply
 
-To learn more and get started, visit https://tinytapeout.com.
+In order for there to be a sufficient water supply the input must read true
+<br><br><br>
+![simplesprinkler
+](./image/SimpleSprinkler.drawio.png)
+<br><br>
+### **Input Variables:**
+  
+  Rain (A)
 
-## Wokwi Projects
+  * A = 1 currently raining
+  * A = 0 not raining
 
-Edit the [info.yaml](info.yaml) and change the `wokwi_id` to the ID of your Wokwi project. You can find the ID in the URL of your project, it's the big number after `wokwi.com/projects/`.
+  Water Supply (B)
 
-The GitHub action will automatically fetch the digital netlist from Wokwi and build the ASIC files.
+  * B = 1 sufficient water available
+  * B = 0 water supply inefficient
 
-## Enable GitHub actions to build the results page
+  Soil Moisture (C)
 
-- [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
+ * C = 1 soil is moist
+ * C = 0 soil is not moist
 
-## Resources
+  Time (D)
 
-- [FAQ](https://tinytapeout.com/faq/)
-- [Digital design lessons](https://tinytapeout.com/digital_design/)
-- [Learn how semiconductors work](https://tinytapeout.com/siliwiz/)
-- [Join the community](https://tinytapeout.com/discord)
-- [Build your design locally](https://www.tinytapeout.com/guides/local-hardening/)
+  * D = 1 current time is within watering period
+  * D = 0 current time is not within watering period
 
-## What next?
+### **Output Variables:**
 
-- [Submit your design to the next shuttle](https://app.tinytapeout.com/).
-- Edit [this README](README.md) and explain your design, how it works, and how to test it.
-- Share your project on your social network of choice:
-  - LinkedIn [#tinytapeout](https://www.linkedin.com/search/results/content/?keywords=%23tinytapeout) [@TinyTapeout](https://www.linkedin.com/company/100708654/)
-  - Mastodon [#tinytapeout](https://chaos.social/tags/tinytapeout) [@matthewvenn](https://chaos.social/@matthewvenn)
-  - X (formerly Twitter) [#tinytapeout](https://twitter.com/hashtag/tinytapeout) [@tinytapeout](https://twitter.com/tinytapeout)
-  - Bluesky [@tinytapeout.com](https://bsky.app/profile/tinytapeout.com)
+  Sprinkler System (S)
+  * S = 1 sprinkler system enabled
+  * S = 0 sprinkler system disabled
+
+  Water Supply (W)
+  * W = 1 sufficient water is available
+  * W = 0 water supply is insufficient
+
+### **Truth Table:**
+| A     | B     | C     | D     | S     | W     |       |
+|-------|-------|-------|-------|-------|-------|-------|
+| 0     | 0     | 0     | 0     | 0     | 0     |       |
+| 0     | 0     | 0     | 1     | 1     | 0     | ⬅️    |
+| 0     | 0     | 1     | 0     | 0     | 0     |       |
+| 0     | 0     | 1     | 1     | 0     | 0     |       |
+| 0     | 1     | 0     | 0     | 1     | 1     | ⬅️    |
+| 0     | 1     | 0     | 1     | 1     | 1     | ⬅️    |
+| 0     | 1     | 1     | 0     | 0     | 1     | ⬅️    |
+| 0     | 1     | 1     | 1     | 0     | 1     | ⬅️     |
+| 1     | 0     | 0     | 0     | 0     | 0     |       |
+| 1     | 0     | 0     | 1     | 0     | 0     |       |
+| 1     | 0     | 1     | 0     | 0     | 0     |       |
+| 1     | 0     | 1     | 1     | 0     | 0     |       |
+| 1     | 1     | 0     | 0     | 0     | 1     | ⬅️     |
+| 1     | 1     | 0     | 1     | 0     | 1     | ⬅️     |
+| 1     | 1     | 1     | 0     | 0     | 1     | ⬅️     |
+| 1     | 1     | 1     | 1     | 0     | 1     | ⬅️     |
+
+-------------------------------------------------------------------------------
