@@ -7,21 +7,18 @@ Link to Wokwi project: [Simple Sprinkler](https://wokwi.com/projects/45118439172
 I designed a simple sprinkler (hence the name) using combinational logic. The system evaluates environmental conditions and operational constraints to determine whether the sprinkler system should be enabled, while independently indicating whether sufficient water supply is available. 
 
 ### **Logic**
-For the sprinkler to actually function, two conditions must be met
+For the sprinkler to actually function, two conditions must be met:
 * The sprinkler system must be enabled
 * There has to be a sufficient water supply
 
-In order to enable the sprinkler the following conditions have to be met
+In order to enable the sprinkler the following conditions have to be met:
 * It can't be raining
 * The soil can't be moist
 * Water supply doesn't matter
 * Watering time doesn't matter as long as there is water supply
 
-In order for there to be a sufficient water supply the input must read true
-<br><br><br>
-![simplesprinkler
-](./image/SimpleSprinkler.drawio.png)
-<br><br>
+In order for there to be a sufficient water supply the input must read true.
+
 ### **Input Variables:**
   
   Rain (A)
