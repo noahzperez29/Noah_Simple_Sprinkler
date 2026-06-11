@@ -1,4 +1,4 @@
-![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/fpga/badge.svg)
+![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/wokwi_test/badge.svg) ![](../../workflows/fpga/badge.svg)
 
 # Simple Sprinkler Project
 Link to Wokwi project: [Simple Sprinkler](https://wokwi.com/projects/451184391728659457)
